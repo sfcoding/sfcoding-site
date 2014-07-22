@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/pygment_trac.css" media="screen" />
+    <script src="js/jquery-2.1.0.min.js"></script>
+
+    <title>ScaccialaCoding - OfficialPage</title>
+  </head>
+
+  <body>
+    <script>
+      $( document ).ready(function() {
+        console.log( "ready!" );
+
+        $.get('https://api.github.com/orgs/scaccialacoding/repos', function(json) {
+          //console.log(json);
+          //console.log(JSON.stringify(json));
+          var menuSet = [];
+          var id = 0;
+
+          $.each(json, function (idx, topic){
+            var name = topic.name;
+
+            if(name!='scaccialacoding.github.io'){
+              var gitUrl = topic.html_url;
+              var branches = topic.branches_url;
+              var descript = topic.description;
+              var language = topic.language;
+              var homepage = topic.homepage;
+              var comand = "<span class='comand'>ls -l</span>";
+              console.log(homepage);
+
+              if (descript !== null && descript.indexOf('[')!=-1 && descript.indexOf(']')!=-1){
+                //console.log("descri "+descript+" index "+descript.indexOf(']'));
+                var str = descript.split('[');
+                descript = str[0];
+                var menu = str[1].substr(0,str[1].indexOf(']'));
+                //menu = menu.substr(0, menu.indexOf(']'));
+                
+                if (menuSet.indexOf(menu) == -1){
+                  //console.log(menu);
+                  menuSet.push(menu);
+                  //console.log(menuSet);
+                  $('#menu').append("<table class='menu' id='"+menuSet.indexOf(menu)+"'><tr><td>\\"+menu+"$ "+comand+"</td></tr></table><br/>");
+                }
+
+                if (homepage !== ""){
+                  //console.log(name+" homepage "+homepage);
+                  name = "<a href='"+homepage+"'>"+name+"</a> ";      
+                }else{
+                  name = name+" ";
+                }
+
+                $('#'+menuSet.indexOf(menu)).append(
+                "<tr class='repo'><td></td><td>"+
+                  name+
+                  "<a style='font-size:8pt;' href='"+gitUrl+"'>gitHub</a><br/>"+
+                  "<span class='description'>"+descript+"</span><br/>"+
+                  "<span class='detail'>language: "+language+"</span>"+
+                "</td></tr>"
+                );
+                
+              }
+              /*
+              $.get(branches, function(json) {
+                var sito = false;
+
+                $.each(json, function (idx, topic){
+                  console.log(topic.name);
+                  if (topic.name=="gh-pages"){
+                    name = "<a href='http://scaccialacoding.github.io/"+name+"'>"+name+"</a> ";
+                    sito=true;
+                    
+                    $('#repo').append(
+                    "<p class='repo'>"+
+                      name+
+                      "<a style='font-size:8pt;' href='"+gitUrl+"'>gitHub</a><br/>"+
+                      "<span class='description'>"+descript+"</span><br/>"+
+                      "<span class='detail'>language: "+language+"</span><br/>"+
+                    "</p>"
+                    );
+
+                  }else if (!sito){
+                    name = name;
+
+                    $('#repo').append(
+                    "<p class='repo'>"+
+                      name+
+                      "<a style='font-size:8pt;' href='"+gitUrl+"'>gitHub</a><br/>"+
+                      "<span class='description'>"+descript+"</span><br/>"+
+                      "<span class='detail'>language: "+language+"</span>"+
+                    "</p>"
+                    );
+                  }
+                });
+              });
+              */
+
+            }
+          });
+        });
+      });
+      
+      $(window).load(function () {
+        console.log( "load!" );
+        $('#repo').show();
+        //alert('Finestra caricata completamente, compresa la grafica');
+      });
+    </script>
+    <header>
+      <div class="container">
+        <h1>ScaccialaCoding</h1>
+        <h2></h2>
+        <section id="downloads">
+          <a href="https://github.com/ScaccialaCoding" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <aside id="main_content" class='about'>
+        <h3>
+        <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>About us</h3>
+
+        <p>
+          Main page of the great student group of the university of Perugia. 
+          In our repository you can find our school projects, usefull for begginers programmer or other students. 
+          We try to comment and explain the code as we can, but at the same time isn't very simple.
+        </p>
+        
+
+      </aside>
+      <section id='menu' class='repoList'></section>
+    </div>
+  </body>
+</html>
