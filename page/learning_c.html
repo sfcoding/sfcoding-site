@@ -36,7 +36,7 @@
         <ul>
           <li><a class="aListC" href="#tipi_p">Tipi di puntatore</a></li>
           <li><a class="aListC" href="#op_p">Operazioni sui puntatori</a></li>
-          <li><a class="aListC" href="#func_p">Puntatori a funzioni</a></li>
+          <li><a class="aListC" href="#func_p">Function Pointers</a></li>
         </ul>
       </section>
 
@@ -57,13 +57,82 @@
         </div>
 
         <div id="func_p">
-          <pre style="background-color: RGB(255,255,255);" class="prettyprint">
-          int main(){
-              int a;
-              printf("%d", a);
+          <h4>Function Pointers</h4>
+          <p>
+            Partiamo da un esempio base: <br/>
+            il seguente è un semplice codice che scrive il prototipo della funzione, la implementa e la richiama dal main.
+          </p>
+          <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+            #include <stdio.h>;
+ 
+            void sayHello();
+             
+            void sayHello() {
+              printf("hello world");
+            }
+             
+            int main() {
+              sayHello();
             }
           </pre>
+          <p>Partendo quindi dall'esempio precedente creiamo un puntatore alla funzione "sayHello" e la richiameremo</p>
+           <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+              int main() {
+                void (*sayHelloPtr)() = sayHello;
+                (*sayHelloPtr)();
+              }
+           </pre>
+           <p>Allora è possibile creare un puntatore a funzione in questa maniera scrivendo:</p>
+          <ul>
+            <li>tipo di ritorno</li>
+            <li>tra parentesi con * il nome della variabile a cui assegneremo la funzione</li>
+            <li>sempre tra parentesi il tipo di dato che prende la funzione</li>
+          </ul>
+          <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+            int test(double a);
 
+            int (*pfunz)(double);
+
+            int ris = pfunz(4.2); //per richiamarlo
+          </pre>
+          <p>Tutto questo meccanismo è valido solo se le funzioni hanno lo stesso tipo di ritorno e lo stesso numero di parametri dello stesso tipo.
+          <br/>
+          Di seguito un esempio più articolato:</p>
+          <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+            #include <stdio.h>
+   
+            // function prototypes
+            int add(int x, int y);
+            int subtract(int x, int y);
+            int domath(int (*mathop)(int, int), int x, int y);
+             
+            // add x + y
+            int add(int x, int y) {
+              return x + y;
+            }
+             
+            // subtract x - y
+            int subtract(int x, int y) {
+              return x - y;
+            }
+             
+            // run the function pointer with inputs
+            int domath(int (*mathop)(int, int), int x, int y) {
+              return (*mathop)(x, y);
+            }
+             
+            // calling from main
+            int main() {
+             
+              // call math function with add
+              int a = domath(add, 10, 2);
+              printf("Add gives: %d\n", a);
+             
+              // call math function with subtract
+              int b = domath(subtract, 10, 2);
+              printf("Subtract gives: %d\n", b);
+            }
+          </pre>
         </div>
 
         <div id="lambdaExample">
