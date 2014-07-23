@@ -42,7 +42,7 @@
                 var menu = str[1].substr(0,str[1].indexOf(']'));
                 //menu = menu.substr(0, menu.indexOf(']'));
                 
-                if (menuSet.indexOf(menu) == 0){
+                if (menuSet.indexOf(menu) == -1){
                   //console.log(menu);
                   menuSet.push(menu);
                   //console.log(menuSet);
@@ -135,7 +135,7 @@
         
 
       </aside>
-      <section id='menu' class='repoList'>
+      <section class='repoList'>
         <table class="menu" id="0">
           <tbody>
             <tr>
