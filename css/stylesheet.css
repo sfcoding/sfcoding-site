@@ -13,7 +13,7 @@ body {
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 section {
