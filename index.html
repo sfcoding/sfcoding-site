@@ -16,7 +16,7 @@
       $( document ).ready(function() {
         console.log( "ready!" );
 
-        $.get('https://api.github.com/orgs/scaccialacoding/repos', function(json) {
+        $.get('https://api.github.com/orgs/sfcoding/repos', function(json) {
           //console.log(json);
           //console.log(JSON.stringify(json));
           var menuSet = [];
@@ -25,7 +25,8 @@
           $.each(json, function (idx, topic){
             var name = topic.name;
 
-            if(name!='scaccialacoding.github.io'){
+
+            /*if(name!='scaccialacoding.github.io'){*/
               var gitUrl = topic.html_url;
               var branches = topic.branches_url;
               var descript = topic.description;
@@ -100,7 +101,7 @@
               });
               */
 
-            }
+            //}
           });
         });
       });
@@ -113,10 +114,10 @@
     </script>
     <header>
       <div class="container">
-        <h1>ScaccialaCoding</h1>
+        <h1>SourceFoundryCoding</h1>
         <h2></h2>
         <section id="downloads">
-          <a href="https://github.com/ScaccialaCoding" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+          <a href="https://github.com/sfcoding" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
         </section>
       </div>
     </header>
