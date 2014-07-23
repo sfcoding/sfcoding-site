@@ -136,7 +136,21 @@
         </div>
 
         <div id="lambdaExample">
-          
+          <h4>Esempio di Lambda Espressione</h4>
+          <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+            #include <stdio.h>
+
+            void eval(int (*func)(char*)) {
+              func("lambda");
+              func("expression");
+            }
+
+            void main() {
+              int (*func)(char*);
+              func = ({ int $(char *str){ printf("Test: %s\n", str); } $; });
+              eval(func);
+            }
+          </pre>
         </div>
       </section>
       
