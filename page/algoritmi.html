@@ -54,9 +54,9 @@
 
                       void insertion_sort (int *A, int n) {
                         int i, j, z;
-                        for (i = 1; i < n; i++){
+                        for (i = 1; i &lt;; n; i++){
                           z = A[i], j = i-1;
-                          while ( j >= 0 && A[j] > z ){
+                          while ( j >= 0 &amp;&amp; A[j] > z ){
                             A[j+1] = A[j];
                             j--;
                           }
@@ -70,16 +70,16 @@
                         int n2 = r - q; //r - p + 1 - n1
                         int i, L[n1+1], R[n2+1];
                        
-                        for (i=0; i<n1; i++)
+                        for (i=0; i&lt;n1; i++)
                           L[i] = A[p+i-1];
                         L[n1] = INT_MAX;
-                        for (i=0; i<n2; i++)
+                        for (i=0; i&lt;n2; i++)
                           R[i] = A[q+i];
                         R[n2] = INT_MAX;
                        
                         i=0; int j=0, k;
-                        for(k=p; k<r; k++){
-                          if (L[i] < R[j]){
+                        for(k=p; k&lt;r; k++){
+                          if (L[i] &lt; R[j]){
                             A[k] = L[i];
                             i++;
                           }
@@ -91,7 +91,7 @@
                       }
                        
                       void merge_sort(int *A, int p, int r){
-                          if (p<r){
+                          if (p&lt;r){
                             int q = (r+p)/2;
                             merge_sort(A, p, q);
                             merge_sort(A, q+1, r);
@@ -101,16 +101,16 @@
                        
                       void quick_sort(int *A, int p, int r){
                         int pivot, j, i;
-                        if(p<r){
+                        if(p&lt;r){
                           pivot = p;
                           i = p;
                           j = r;
-                          while(i<j){
-                            while(A[i] <= A[pivot] && i < r)
+                          while(i&lt;j){
+                            while(A[i] &lt;= A[pivot] &amp;&amp; i &lt; r)
                               i++;
                             while(A[j] > A[pivot])
                               j--;
-                            if(i<j)
+                            if(i&lt;&lt;j)
                               swap(A+i, A+j);
                                }
                           swap(A+pivot, A+j);
@@ -121,9 +121,9 @@
 
                       void maxheapify (int*A, int i, int n) {
                         int t = i;
-                        if(2*i <=n && A[i] < A[2*i])
+                        if(2*i &lt;=n &amp;&amp; A[i] &lt; A[2*i])
                           t = 2*i;
-                        if(2*i+1 <=n && A[2*i + 1] > A[t])
+                        if(2*i+1 &lt;=n &amp;&amp; A[2*i + 1] > A[t])
                           t = 2*i + 1;
                         if (i != t){
                           swap(A+t, A+i);
@@ -154,7 +154,7 @@
                        
                       void inizializzo(int *A, int n){
                         int i;
-                        for (i=0; i < n ; i++){
+                        for (i=0; i &lt; n ; i++){
                           A[i] = rand()%100;
                         }
                       }
@@ -188,20 +188,20 @@
                       typedef unsigned int uint;
                        
                       template <typename T>
-                      void insertionSort(vector <T> & v){
+                      void insertionSort(vector <T> &amp; v){
                         uint size = v.size();
-                        for(uint i = 1; i < size; ++i)
+                        for(uint i = 1; i &lt; size; ++i)
                         {
                           T z = v.at(i);
                           uint j;
-                          for(j = i; j-- > 0 && v.at(j) > z; )
+                          for(j = i; j-- > 0 &amp;&amp;v.at(j) > z; )
                             v.at(j+1) = v.at(j);
                           v.at(j+1) = z;
                         }
                       }
                        
                       template <typename T>
-                      void merge(vector <T> & v, uint p, uint q, uint r){
+                      void merge(vector <T> &amp; v, uint p, uint q, uint r){
                        
                         uint s1 = q - p + 2;
                         uint s2 = r - q + 1;
@@ -210,25 +210,25 @@
                         vector <T> v1(s1);
                         vector <T> v2(s2);
                        
-                        for(; i < s1 - 1 ; ++i)
+                        for(; i &lt; s1 - 1 ; ++i)
                           v1.at(i) = v.at(p + i);
                        
                         v1.at(i) = numeric_limits<T>::max();
                        
-                        for(i = 0; i < s2 - 1; ++i)
+                        for(i = 0; i &lt; s2 - 1; ++i)
                           v2.at(i) = v.at(q + i + 1);
                        
                         v2.at(i) = numeric_limits<T>::max();
                        
                         i = 0;
                        
-                        for(uint k = p; k <= r; ++k)
-                          v.at(k) = v1.at(i) < v2.at(j) ? v1.at(i++) : v2.at(j++);
+                        for(uint k = p; k &lt;= r; ++k)
+                          v.at(k) = v1.at(i) &lt; v2.at(j) ? v1.at(i++) : v2.at(j++);
                        
                       }
                        
                       template <typename T>
-                      void mergeSort(vector <T> & v, uint p, uint r){
+                      void mergeSort(vector <T> &amp; v, uint p, uint r){
                        
                         if(p >= r) return;
                         int q = floor((p + r) / 2);
@@ -239,16 +239,16 @@
                       }
                        
                       template <typename T>
-                      void mergeSort(vector <T> & v){
+                      void mergeSort(vector <T> &amp; v){
                         mergeSort(v, 0, v.size()-1);
                       }
                        
                        
                       template <typename T>
-                      int partition(vector <T> &v, uint p, uint r){
+                      int partition(vector <T> &amp;v, uint p, uint r){
                         int i = p;
-                        for(uint j = p; j < r; ++j)
-                            if(v.at(j) <= v.at( r ))
+                        for(uint j = p; j &lt; r; ++j)
+                            if(v.at(j) &lt;= v.at( r ))
                               swap(v.at(j), v.at(i++));
                         swap(v.at(i), v.at( r ) );
                         return i;
@@ -256,7 +256,7 @@
                        
                        
                       template <typename T>
-                      void quickSort(vector <T> &v, uint p, uint r){
+                      void quickSort(vector <T> &amp;v, uint p, uint r){
                         if(p >= r) return;
                         int q = partition(v,p,r);
                         quickSort(v, p, q-1);
@@ -264,11 +264,11 @@
                       }
                        
                       template <typename T>
-                      void quickSort(vector <T> &v){
+                      void quickSort(vector <T> &amp;v){
                         quickSort(v, 0, v.size()-1);
                       }
                        
-                      void countingSort(vector <uint> &I){
+                      void countingSort(vector <uint> &amp;I){
                        
                       /* la ricerca del massimo non fa parte dell'algoritmo originale
                        * nel quale viene fornito esplicitamente in input il range
@@ -281,20 +281,20 @@
                        
                         uint limit = I.at(0);
                         uint i = 1;
-                        for(; i < size; ++i)
+                        for(; i &lt; size; ++i)
                           if(I[i] > limit)
                               limit = I[i];
                        
                         uint * v = new uint[++limit];
                         vector <uint> * O = new vector<uint>(size);
                        
-                        for(i = 0; i <= limit; ++i)
+                        for(i = 0; i &lt;= limit; ++i)
                           v[i] = 0;
                        
-                        for(i = 0; i < size; ++i)
+                        for(i = 0; i &lt; size; ++i)
                           v[I[i]]++;
                        
-                        for(i = 1; i < limit; ++i)
+                        for(i = 1; i &lt; limit; ++i)
                           v[i] += v[i-1];
                        
                         for(i = size; i-- > 0; )
@@ -309,12 +309,12 @@
                       }
                        
                       template <typename T>
-                      void selectionSort(vector <T> & v){
-                        for(int i = 0; i < v.size() - 1; i++)
+                      void selectionSort(vector <T> &amp; v){
+                        for(int i = 0; i &lt; v.size() - 1; i++)
                         {
                           int min = i;
-                          for(int j = i+1; j < v.size(); j++)
-                            if(v.at(j) < v.at(min))
+                          for(int j = i+1; j &lt; v.size(); j++)
+                            if(v.at(j) &lt; v.at(min))
                               min = j;
                           swap(v[min], v[i]);
                         }
@@ -345,9 +345,9 @@
                             uint max = i;
                             uint l = left(i);
                             uint r = right(i);
-                            if(l < heapSize && v->at(max) < v->at(l))
+                            if(l &lt; heapSize &amp;&amp; v->at(max) &lt; v->at(l))
                                 max = l;
-                            if(r < heapSize && v->at(max) < v->at( r ))
+                            if(r &lt; heapSize &amp;&amp;v->at(max) &lt; v->at( r ))
                                 max = r;
                             if(max != i){
                               swap(v->at(i), v->at(max));
@@ -360,7 +360,7 @@
                                  maxHeapify(i);
                           }
                        
-                          static void sort(vector <T> &v){
+                          static void sort(vector <T> &amp;v){
                        
                             Heap<T> * hp = new Heap<T>(v);
                        
@@ -387,14 +387,14 @@
                        
                           void increaseToKey(uint i, uint k)
                           {
-                            if(k < v->at(i))
+                            if(k &lt; v->at(i))
                             {
-                              cout << "k dev'essere maggiore del vecchio valore!";
+                              cout &lt;&lt; "k dev'essere maggiore del vecchio valore!";
                               return;
                             }
                             v->at(i) = k;
                             uint par = parent(i)+1;
-                            while(par-- > 0 && v->at(par) < v->at(i))
+                            while(par-- > 0 &amp;&amp; v->at(par) &lt;v->at(i))
                             {
                               swap(v->at(i), v->at(par));
                               i = par;
@@ -407,7 +407,7 @@
                             increaseToKey(heapSize++, k);
                           }
                        
-                          Heap(vector <T> &v){
+                          Heap(vector <T> &amp;v){
                             this->v = &v;
                             this->heapSize = v.size();
                             buildMaxHeap();
@@ -423,23 +423,23 @@
                         A.push_back("stb15");
                         A.push_back("sta35");
                        
-                        cout << "Ordino il vettore di stringhe: " << endl << "\t";
+                        cout &lt;&lt; "Ordino il vettore di stringhe: "&lt;&lt; endl &lt;&lt; "\t";
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << A.at(i) << " "; 
-                        cout << endl;
+                        for(uint i = 0; i &lt; 4; ++i)
+                          cout &lt;&lt; A.at(i) &lt; " "; 
+                        cout &lt; endl;
                        
                         //insertionSort(A);
                         //quickSort(A);
                         //Heap<string>::sort(A);
                               selectionSort(A);
                        
-                        cout << "con SelectionSort: " << endl << "\t";
+                        cout &lt; "con SelectionSort: " &lt; endl &lt; "\t";
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << A.at(i) << " "; 
+                        for(uint i = 0; i &lt; 4; ++i)
+                          cout &lt; A.at(i) &lt; " "; 
                        
-                        cout << endl << endl;
+                        cout &lt; endl &lt; endl;
                        
                         vector <double> B;
                         B.push_back(23.924);
@@ -447,20 +447,20 @@
                         B.push_back(56.23);
                         B.push_back(0);
                        
-                        cout << "Ordino il vettore di double: " << endl << "\t";
+                        cout &lt; "Ordino il vettore di double: " &lt; endl &lt; "\t";
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << B.at(i) << " "; 
-                        cout << endl;
+                        for(uint i = 0; i &lt; 4; ++i)
+                          cout &lt; B.at(i) &lt; " "; 
+                        cout &lt; endl;
                        
                         mergeSort(B);
                        
-                        cout << "con MergeSort: " << endl << "\t";
+                        cout &lt; "con MergeSort: " &lt; endl &lt; "\t";
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << B.at(i) << " "; 
+                        for(uint i = 0; i &lt; 4; ++i)
+                          cout&lt;B.at(i)&lt;" "; 
                        
-                        cout << endl << endl;
+                        cout&lt;endl&lt;endl;
                        
                         vector <uint> C;
                         C.push_back(102);
@@ -468,20 +468,20 @@
                         C.push_back(4);
                         C.push_back(90);
                        
-                        cout << "Ordino il vettore di interi positivi: " << endl << "\t";
+                        cout&lt;"Ordino il vettore di interi positivi: "&lt;endl&lt;"\t";
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << C.at(i) << " "; 
-                        cout << endl;
+                        for(uint i = 0; i &lt;4; ++i)
+                          cout&lt;C.at(i)&lt;" "; 
+                        cout&lt;endl;
                        
                         countingSort( C );
                        
-                        cout << "con CountingSort:" << endl << "\t";
+                        cout&lt;"con CountingSort:"&lt;endl&lt;"\t";
                        
                        
-                        for(uint i = 0; i < 4; ++i)
-                          cout << C.at(i) << " "; 
-                        cout << endl;
+                        for(uint i = 0; i &lt; 4; ++i)
+                          cout&lt;C.at(i)&lt;" "; 
+                        cout&lt;endl;
                        
                               return 0;
                        
@@ -501,7 +501,7 @@
                           }
                        
                           static private void SortCore(int[] A,int p,int r) {
-                              if(p<r) {
+                              if(p&lt;r) {
                                   int q=(p+r)/2;
                                   SortCore(A,p,q);
                                   SortCore(A,q+1,r);
@@ -514,16 +514,16 @@
                               int n2=r-q;
                               int[] L=new int[n1+1];
                               int[] R=new int[n2+1];
-                              for(int i=0;i<n1;i++)
+                              for(int i=0;i&lt;n1;i++)
                                   L[i]=A[p+i];
                               L[n1]=10000;
-                              for(int j=0;j<n2;j++)
+                              for(int j=0;j&lt;n2;j++)
                                   R[j]=A[q+1+j];
                               R[n2]=10000;
                               int i=0;
                               int j=0;
-                              for(int k=p;k<=r;k++) {
-                                  if(L[i]<R[j]) {
+                              for(int k=p;k&lt;=r;k++) {
+                                  if(L[i]&lt;R[j]) {
                                       A[k]=L[i];
                                       i++;
                                   } else {
@@ -535,12 +535,12 @@
                        
                           public static void main(String[] args) {
                               int[] A={3,7,0,9,-1};
-                              for(int i=0;i<A.length;i++)
+                              for(int i=0;i&lt;A.length;i++)
                                   System.out.print(A[i]+" ");
                               System.out.println();
                               Sort(A);
                               System.out.println("Array ordinato: ");
-                              for(int i=0;i<A.length;i++)
+                              for(int i=0;i&lt;A.length;i++)
                                   System.out.print(A[i]+" ");
                           }
                       }
@@ -553,11 +553,11 @@
                          
                             public static int[] Sort(int[] array, int range) {
                                 int[] cont=new int[range+1];
-                                for(int i=0;i<=range;i++)
+                                for(int i=0;i&lt;=range;i++)
                                     cont[i]=0;
-                                for(int i=0;i<array.length;i++)
+                                for(int i=0;i&lt;array.length;i++)
                                     cont[array[i]]++;
-                                for(int i=1;i<=range;i++)
+                                for(int i=1;i&lt;=range;i++)
                                     cont[i]+=cont[i-1];
                                 int[] sol=new int[array.length];
                                 for(int i=array.length-1;i>=0;i--) {
@@ -569,11 +569,11 @@
                          
                             public static void main(String[] args) {
                                 int[] A={1,6,3,0,1,4,5};
-                                for(int i=0;i<A.length;i++)
+                                for(int i=0;i&lt;A.length;i++)
                                     System.out.print(A[i]+" ");
                                 System.out.println();
                                 int[] O=Sort(A,6);
-                                for(int i=0;i<O.length;i++)
+                                for(int i=0;i&lt;O.length;i++)
                                     System.out.print(O[i]+" ");
                                 System.out.println();
                             }
@@ -592,15 +592,15 @@
                          
                             private static void Heapify(int[] array,int i,int n) {
                                 int max=i;
-                                if((2*i+2)<n)
-                                    if(array[2*i+1]<array[2*i+2])
+                                if((2*i+2)&lt;n)
+                                    if(array[2*i+1]&lt;array[2*i+2])
                                         max=2*i+2;
                                     else
                                         max=2*i+1;
                                 else
-                                    if((2*i+1)<n)
+                                    if((2*i+1)&lt;n)
                                         max=2*i+1;
-                                if(array[i]<array[max]) {
+                                if(array[i]&lt;array[max]) {
                                     int temp=array[max];
                                     array[max]=array[i];
                                     array[i]=temp;
@@ -620,12 +620,12 @@
                          
                             public static void main(String[] args) {
                                 int[] array={3,12,-2,5,-1,9,1,8,0};
-                                for(int i=0;i<array.length;i++)
+                                for(int i=0;i&lt;array.length;i++)
                                     System.out.print(array[i]+" ");
                                 System.out.println();
                                 Sort(array);
                                 System.out.println("Array ordinato: ");
-                                for(int i=0;i<array.length;i++)
+                                for(int i=0;i&lt;array.length;i++)
                                     System.out.print(array[i]+" ");
                             }
                         }
@@ -641,7 +641,7 @@
                             }
                          
                             private static void SortCore(int[] A,int p,int r) {
-                                if(p &lt r) {
+                                if(p &lt; r) {
                                     int q=Partition(A,p,r);
                                     SortCore(A,p,q-1);
                                     SortCore(A,q+1,r);
@@ -651,8 +651,8 @@
                             private static int Partition(int[] A,int p,int r) {
                                 int pivot=A[r];
                                 int i=p-1;
-                                for(int j=p;j &lt r;j++) {
-                                    if(A[j] &lt=pivot) {
+                                for(int j=p;j &lt; r;j++) {
+                                    if(A[j] &lt;=pivot) {
                                         i++;
                                         int temp=A[i];
                                         A[i]=A[j];
@@ -668,12 +668,12 @@
                          
                             public static void main(String[] args) {
                                 int[] A={3,6,1,8,-3,7,-1};
-                                for(int i=0;i &lt A.length;i++)
+                                for(int i=0;i &lt; A.length;i++)
                                     System.out.print(A[i]+" ");
                                 System.out.println();
                                 Sort(A);
                                 System.out.println("Array ordinato: ");
-                                for(int i=0;i &lt A.length;i++)
+                                for(int i=0;i &lt; A.length;i++)
                                     System.out.print(A[i]+" ");
                             }
                         }
