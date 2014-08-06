@@ -40,11 +40,145 @@
               <td>  </td>
               <td><a type="application/octet-stream" href="../data/Appunti_algoritmi_2012-2013_final.pdf" download="Appunti_algoritmi_2012-2013_final">Appunti algoritmi 2012-2013</a>
               </td>
+              <td><a>Alcuni algoritmi ordinamento</a><a id="show_id" onclick="document.getElementById('spoiler_id').style.display=''; document.getElementById('show_id').style.display='none';" class="link">[Show]</a><span id="spoiler_id" style="display: none"><a onclick="document.getElementById('spoiler_id').style.display='none'; document.getElementById('show_id').style.display='';" class="link">[Hide]</a>
+
+              <h4>C code -> HeapSort, QuickSort, MergeSort, InsertionSort</h4>
+                <pre style="background-color: RGB(210,210,210);" class="prettyprint">
+                  #include <stdlib.h> //per rand()
+                  #include <limits.h> //per INT_MAX
+
+                  void insertion_sort (int *A, int n) {
+                    int i, j, z;
+                    for (i = 1; i < n; i++){
+                      z = A[i], j = i-1;
+                      while ( j >= 0 && A[j] > z ){
+                        A[j+1] = A[j];
+                        j--;
+                      }
+                      A[j+1] = z;
+                    }
+                    return;
+                  }
+
+                  void merge (int *A, int p, int q, int r){
+                    int n1 = q - p + 1;
+                    int n2 = r - q; //r - p + 1 - n1
+                    int i, L[n1+1], R[n2+1];
+                   
+                    for (i=0; i<n1; i++)
+                      L[i] = A[p+i-1];
+                    L[n1] = INT_MAX;
+                    for (i=0; i<n2; i++)
+                      R[i] = A[q+i];
+                    R[n2] = INT_MAX;
+                   
+                    i=0; int j=0, k;
+                    for(k=p; k<r; k++){
+                      if (L[i] < R[j]){
+                        A[k] = L[i];
+                        i++;
+                      }
+                      else {
+                        A[k] = R[j];
+                        j++;
+                      }
+                    }
+                  }
+                   
+                  void merge_sort(int *A, int p, int r){
+                      if (p<r){
+                        int q = (r+p)/2;
+                        merge_sort(A, p, q);
+                        merge_sort(A, q+1, r);
+                        merge(A, p, q, r);
+                      }
+                  }
+                   
+                  void quick_sort(int *A, int p, int r){
+                    int pivot, j, i;
+                    if(p<r){
+                      pivot = p;
+                      i = p;
+                      j = r;
+                      while(i<j){
+                        while(A[i] <= A[pivot] && i < r)
+                          i++;
+                        while(A[j] > A[pivot])
+                          j--;
+                        if(i<j)
+                          swap(A+i, A+j);
+                           }
+                      swap(A+pivot, A+j);
+                      quick_sort(A, p, j-1);
+                      quick_sort(A, j+1, r);
+                      }
+                  }
+
+                  void maxheapify (int*A, int i, int n) {
+                    int t = i;
+                    if(2*i <=n && A[i] < A[2*i])
+                      t = 2*i;
+                    if(2*i+1 <=n && A[2*i + 1] > A[t])
+                      t = 2*i + 1;
+                    if (i != t){
+                      swap(A+t, A+i);
+                      maxheapify(A, t, n);
+                    }
+                  }
+                   
+                  void buildmaxheap (int*A, int n) {
+                    int i;
+                    for(i= n/2; i > -1; i--)
+                      maxheapify(A, i, n);
+                  }
+                   
+                  void heap_sort(int *A, int n){
+                    buildmaxheap(A,n);
+                    int i;
+                    for(i=n; i > 0; i--){
+                      swap(A, A+i);
+                      maxheapify(A, 0, i-1);
+                    }
+                  }
+
+                  void swap(int*a, int*b){
+                    int t = *a;
+                    *a = *b;
+                    *b = t;
+                  }
+                   
+                  void inizializzo(int *A, int n){
+                    int i;
+                    for (i=0; i < n ; i++){
+                      A[i] = rand()%100;
+                    }
+                  }
+
+                  int main(){
+                    int n = 100, A[n];
+                   
+                    inizializzo(A, n);
+                   
+                    /*
+                    insertion_sort(A, n);
+                    merge_sort(A, 0, n-1);
+                    quick_sort(A, 0, n-1);
+                    heap_sort(A, n-1);
+                    */
+                    return 0;
+                  }
+                </pre>
+
+              </span>
+              </td>
             </tr>
           </tbody>
         </table>
       </section>
+
+
       
     </div>
   </body>
 </html>
+
