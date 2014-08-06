@@ -641,7 +641,7 @@
                             }
                          
                             private static void SortCore(int[] A,int p,int r) {
-                                if(p<r) {
+                                if(p &lt r) {
                                     int q=Partition(A,p,r);
                                     SortCore(A,p,q-1);
                                     SortCore(A,q+1,r);
@@ -651,8 +651,8 @@
                             private static int Partition(int[] A,int p,int r) {
                                 int pivot=A[r];
                                 int i=p-1;
-                                for(int j=p;j<r;j++) {
-                                    if(A[j]<=pivot) {
+                                for(int j=p;j &lt r;j++) {
+                                    if(A[j] &lt=pivot) {
                                         i++;
                                         int temp=A[i];
                                         A[i]=A[j];
@@ -668,12 +668,12 @@
                          
                             public static void main(String[] args) {
                                 int[] A={3,6,1,8,-3,7,-1};
-                                for(int i=0;i<A.length;i++)
+                                for(int i=0;i &lt A.length;i++)
                                     System.out.print(A[i]+" ");
                                 System.out.println();
                                 Sort(A);
                                 System.out.println("Array ordinato: ");
-                                for(int i=0;i<A.length;i++)
+                                for(int i=0;i &lt A.length;i++)
                                     System.out.print(A[i]+" ");
                             }
                         }
