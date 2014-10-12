@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    block title
+    style
+      include ../css/stylesheet.css
+      include ../css/pygment_trac.css
+      include ../css/test.css
+
+  body
+    header
+      .container
+        h1 SourceFoundryCoding
+        section#downloads
+          a.btn.btn-github(href='https://github.com/sfcoding')
+            span.icon
+            | View on GitHub
+        div.menu 
+          div.menuButton
+            a.menuHeader(href='/repo')
+              span
+              | -> repository 
+          div.menuButton
+            a.menuHeader(href='/guide')
+              span
+              | -> guide
+          div.menuButton
+            a.menuHeader(href='/unipg')
+              span
+              | -> unipg 
+          div.menuButton
+            a.menuHeader(href='/about')
+              span
+              | -> about 
+
+    .container
+      block content

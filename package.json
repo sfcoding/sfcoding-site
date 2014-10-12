@@ -1,0 +1,17 @@
+{
+  "name": "nodejsTest",
+  "version": "0.0.0",
+  "description": "prova",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~4.4.5",
+    "stylus": "~0.46.3",
+    "logfmt": "~1.1.2",
+    "jade": "~1.3.1"
+  }
+}

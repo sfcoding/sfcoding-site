@@ -6,9 +6,9 @@
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/pygment_trac.css" media="screen" />
-    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
 
-    <title>SourceFoundryCoding - OfficialPage</title>
+    <title>ScaccialaCoding - OfficialPage</title>
   </head>
 
   <body>
@@ -16,7 +16,7 @@
       $( document ).ready(function() {
         console.log( "ready!" );
 
-        $.get('https://api.github.com/orgs/sfcoding/repos', function(json) {
+        $.get('https://api.github.com/orgs/scaccialacoding/repos', function(json) {
           //console.log(json);
           //console.log(JSON.stringify(json));
           var menuSet = [];
@@ -25,8 +25,7 @@
           $.each(json, function (idx, topic){
             var name = topic.name;
 
-
-            /*if(name!='scaccialacoding.github.io'){*/
+            if(name!='scaccialacoding.github.io'){
               var gitUrl = topic.html_url;
               var branches = topic.branches_url;
               var descript = topic.description;
@@ -101,7 +100,7 @@
               });
               */
 
-            //}
+            }
           });
         });
       });
@@ -112,13 +111,12 @@
         //alert('Finestra caricata completamente, compresa la grafica');
       });
     </script>
-    
     <header>
       <div class="container">
-        <h1>SourceFoundryCoding</h1>
+        <h1>ScaccialaCoding</h1>
         <h2></h2>
         <section id="downloads">
-          <a href="https://github.com/sfcoding" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+          <a href="https://github.com/ScaccialaCoding" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
         </section>
       </div>
     </header>
@@ -136,44 +134,7 @@
         
 
       </aside>
-      <section class='repoList'>
-        <table class="menu-materie">
-          <tbody>
-            <tr>
-              <td>\Materie$ 
-                <span class="comand">ls -l</span>
-              </td>
-            </tr>
-            <tr class="repo">
-              <td></td>
-              <td>Algoritmi
-                <a style="font-size:8pt;" href="./page/algoritmi.html">vai</a><br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
       <section id='menu' class='repoList'></section>
-      
-      <section class='repoList'>
-        <table class="menu-materie">
-          <tbody>
-            <tr>
-              <td>\Learning a little C$ 
-                <span class="comand">ls -l</span>
-              </td>
-            </tr>
-            <tr class="repo">
-              <td></td>
-              <td>Puntatori
-                <a style="font-size:8pt;" href="./page/learning_c.html">vai</a><br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      
     </div>
   </body>
 </html>
