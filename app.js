@@ -93,7 +93,7 @@ app.get('/repo', function(req, res) {
 });
 
 app.get('/', function(req, res){
-  res.render('index', { title: 'SFcoding' });
+  res.render('index', { title: 'SFcoding-ciao' });
 });
 
 app.get('/about', function(req, res){
