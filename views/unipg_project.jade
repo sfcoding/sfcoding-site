@@ -1,0 +1,23 @@
+extends ./template.jade
+
+block title
+  title= title
+
+block content
+  section#menu.repoList
+    table.menu
+      each val, key in repo
+        tr
+          td #{key}:
+            for r in val
+              tr.repo
+                td
+                td
+                  if r.homepage
+                    a(href= '#{r.homepage}') #{r.name}
+                  else
+                    span #{r.name}
+                  &nbsp;
+                  a(href= '#{r.gitUrl}', style='font-size:8pt') gitHub
+                  div.description #{r.descript}
+                  div.detail language: #{r.language}

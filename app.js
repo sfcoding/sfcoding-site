@@ -18,7 +18,7 @@ app.use(logfmt.requestLogger());
 
 app.set('view engine', 'jade');
 
-app.get('/repo', function(req, res) {
+app.get('/unipg_project', function(req, res) {
 	var optionsget = {
     	host : 'api.github.com', // here only the domain name
     	// (no http/https !)
@@ -56,21 +56,21 @@ app.get('/repo', function(req, res) {
 		      //var homepage = topic.homepage;
 		      //var comand = "<span class='comand'>ls -l</span>";
 		      //console.log(homepage);
-		
+
 		      if (descript !== null && descript.indexOf('[')!=-1 && descript.indexOf(']')!=-1){
 		        //console.log("descri "+descript+" index "+descript.indexOf(']'));
 		        var str = descript.split('[');
 		        descript = str[0];
 		        var menu = str[1].substr(0,str[1].indexOf(']'));
 		        //menu = menu.substr(0, menu.indexOf(']'));
-		        
+
 		        if ( !(menu in menuSet) ){
 		          //console.log(menu);
 		          menuSet[menu] =[];
 		          //console.log(menuSet);
-		          
+
 		        }
-		        
+
 		        menuSet[menu].push({'name': topic.name,
 		        										'homepage': topic.homepage,
 		        										'gitUrl':topic.html_url,
@@ -81,15 +81,15 @@ app.get('/repo', function(req, res) {
 		      }
 	      }
 				//console.log(menuSet);
-				res.render("repo",{repo:menuSet});
+				res.render("unipg_project",{repo:menuSet});
 	    });
 	});
- 
+
 	reqGet.end();
 	reqGet.on('error', function(e) {
 		//console.error(e);
 	});
-	
+
 });
 
 app.get('/', function(req, res){

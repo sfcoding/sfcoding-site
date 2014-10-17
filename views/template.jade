@@ -15,23 +15,26 @@ html
           a.btn.btn-github(href='https://github.com/sfcoding')
             span.icon
             | View on GitHub
-        div.menu 
+        div.menu
           div.menuButton
-            a.menuHeader(href='/repo')
+            a.menuHeader(href='/')
               span
-              | -> repository 
+              | -> home
+          div.menuButton
+            a.menuHeader(href='/project')
+              span
+              | -> project
+          div.menuButton
+            a.menuHeader(href='/unipg_project')
+              span
+              | -> unipg_project
           div.menuButton
             a.menuHeader(href='/guide')
               span
               | -> guide
           div.menuButton
-            a.menuHeader(href='/unipg')
-              span
-              | -> unipg 
-          div.menuButton
             a.menuHeader(href='/about')
               span
-              | -> about 
-
+              | -> about
     .container
       block content
