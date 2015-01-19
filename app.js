@@ -18,12 +18,53 @@ app.use(logfmt.requestLogger());
 
 app.set('view engine', 'jade');
 
+app.get('/project', function(req, res) {
+	var optionsget = {
+			host : 'api.github.com', // here only the domain name
+			// (no http/https !)
+			port : 443,
+			path : '/orgs/sfcoding/repos', // the rest of the url with parameters if needed
+			method : 'GET', // do GET
+			headers: {'user-agent': 'node.js'}
+	};
+
+	var json;
+	var reqGet = https.request(optionsget, function(response) {
+		var tmp="";
+		response.on('data', function(data) {
+			tmp += data;
+		});
+
+		response.on('end', function() {
+			json = JSON.parse(tmp);
+
+			var repos = [];
+			for(var idx=0; idx<json.length; idx++){
+					var repo = json[idx];
+					if (repo.name != 'sfcoding-site')
+						repos.push({'name': repo.name,
+								  		'homepage': repo.homepage,
+											'gitUrl':repo.html_url,
+											'branches': repo.branches_url,
+											'descript': repo.descript,
+											'language': repo.language
+										});
+			}
+			res.render("project",{repos:repos});
+		});
+	});
+	reqGet.end();
+	reqGet.on('error', function(e) {
+		//console.error(e);
+	});
+});
+
 app.get('/unipg_project', function(req, res) {
 	var optionsget = {
     	host : 'api.github.com', // here only the domain name
     	// (no http/https !)
     	port : 443,
-    	path : '/orgs/sfcoding/repos', // the rest of the url with parameters if needed
+    	path : '/orgs/sfcoding-school/repos', // the rest of the url with parameters if needed
     	method : 'GET', // do GET
     	headers: {'user-agent': 'node.js'}
 	};
