@@ -143,13 +143,25 @@ app.get('/about', function(req, res){
 
 app.get('/:cat', function(req, res){
 	var cat = req.params.cat;
-	res.render(cat+'/index', { title: cat , cat: cat});
+	res.render(cat+'/index', { title: cat , cat: cat}, function(err, html) {
+	    if(err) {
+		res.send(404);
+	    } else {
+		res.end(html);
+	    }
+	});
 });
 
 app.get('/:cat/:page', function(req, res){
 	var cat = req.params.cat;
 	var page = req.params.page;
-	res.render(cat+'/'+page, { title: page, cat: cat, page: page});
+	res.render(cat+'/'+page, { title: page, cat: cat, page: page},  function(err, html) {
+	    if(err) {
+		res.send(404); // File doesn't exist
+	    } else {
+		res.end(html);
+	    }
+	});
 });
 
 //app.get('/header', function(req, res){
