@@ -141,6 +141,33 @@ app.get('/about', function(req, res){
   res.render('about', { title: 'about' });
 });
 
+var change = Math.random();
+app.get('/debug-mybk/:h', function(req, res){
+	var h = req.params.h;
+	var ris;
+	if (h==0){
+		ris = change;
+	}else if (h == 'change'){
+		change = Math.random();
+		ris = 'random changed!'
+	}else{
+		var date = new Date();
+		var ch = date.getHours();
+		ris = Math.round( ch/h);
+	}
+	res.render('debug', { text: ris });
+	//return ch/h ;
+	/*
+	res.render(cat+'/'+page, { title: page, cat: cat, page: page},  function(err, html) {
+			if(err) {
+		res.send(404); // File doesn't exist
+			} else {
+		res.end(html);
+			}
+	});
+	*/
+});
+
 app.get('/:cat', function(req, res){
 	var cat = req.params.cat;
 	res.render(cat+'/index', { title: cat , cat: cat}, function(err, html) {
@@ -163,6 +190,8 @@ app.get('/:cat/:page', function(req, res){
 	    }
 	});
 });
+
+
 
 //app.get('/header', function(req, res){
 //  res.render('header', { title: 'header' });
