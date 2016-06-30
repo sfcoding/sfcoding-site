@@ -1,2 +1,2 @@
 #!/bin/bash
-pwd > test
+echo $(pwd) > test
